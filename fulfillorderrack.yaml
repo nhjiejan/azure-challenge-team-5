@@ -1,0 +1,42 @@
+#Capture order Rack
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: dev
+  name: fulfillorderack
+  labels:
+    app: fulfillorderack
+spec:
+  selector:
+    run: fulfillorderack
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: dev
+  name: fulfillorderack
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: fulfillorderack
+        app: fulfillorderack
+    spec:
+      containers:
+      - name: fulfillorderack
+        image: shanepeckham/fulfillorderack:v3
+        ports:
+          - containerPort: 8080
+        env:
+          - name: TEAMNAME
+            value: "team5"
+          - name: MONGOHOST
+            value: "mongodb://mongo.dev"
+
+---
