@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: fulfillpersistentvolume
+  namespace: dev
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: fulfillstorageclass
+  resources:
+    requests:
+      storage: 1Gi

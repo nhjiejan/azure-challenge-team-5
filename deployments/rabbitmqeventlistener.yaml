@@ -1,20 +1,3 @@
-#Capture order Rack
-kind: Service
-apiVersion: v1
-metadata:
-  namespace: dev
-  name: rabbitmqlistenerack
-  labels:
-    app: rabbitmqlistenerack
-spec:
-  selector:
-    run: rabbitmqlistenerack
-  ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
-  type: LoadBalancer
----
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -37,6 +20,7 @@ spec:
           - name: TEAMNAME
             value: "team5"
           - name: PROCESSENDPOINT
-            value: "http://fulfillorder.dev.svc.cluster.local:8080/v1/order/"
+            value: "http://fulfillorderack.dev:8080/v1/order/"
           - name: RABBITMQHOST
-            value: "amqp://rabbitmq.dev:5672"
+            value: "amqp://rabbit:rabbit@rabbitmq-rabbitmq.dev:5672"
+  

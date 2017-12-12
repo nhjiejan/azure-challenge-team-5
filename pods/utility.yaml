@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: utility
+  namespace: dev
+spec:
+  containers:
+  - name: utility
+    image: ubuntu
+    command: ['sh', '-c', ' sleep 3600']

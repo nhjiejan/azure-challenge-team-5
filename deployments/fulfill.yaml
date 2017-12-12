@@ -1,20 +1,3 @@
-#Capture order Rack
-kind: Service
-apiVersion: v1
-metadata:
-  namespace: dev
-  name: fulfillorderack
-  labels:
-    app: fulfillorderack
-spec:
-  selector:
-    run: fulfillorderack
-  ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
-  type: LoadBalancer
----
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -37,6 +20,11 @@ spec:
           - name: TEAMNAME
             value: "team5"
           - name: MONGOHOST
-            value: "mongodb://mongo.dev"
-
----
+            value: "mongodb://mongodb-mongodb.dev:27017"
+        volumeMounts:
+          - mountPath: "/orders"
+            name: orders
+      volumes:
+        - name: orders
+          persistentVolumeClaim:
+            claimName: fulfillpersistentvolume

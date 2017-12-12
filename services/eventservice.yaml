@@ -1,0 +1,15 @@
+#Capture order Rack
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: dev
+  name: rabbitmqlistenerack
+  labels:
+    app: rabbitmqlistenerack
+spec:
+  selector:
+    run: rabbitmqlistenerack
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
