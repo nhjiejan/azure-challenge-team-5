@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: captureorderack
-        image: shanepeckham/captureorderack
+        image: shanepeckham/captureorderack:v3
         ports:
           - containerPort: 8080
         env:
@@ -40,5 +40,4 @@ spec:
             value: "mongodb://[mongoinstance].[namespace]"
           - name: RABBITMQHOST
             value: "amqp://[url]l:5672"
-
 ---

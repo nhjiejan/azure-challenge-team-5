@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongo
+  namespace: dev
   labels:
     name: mongo
 spec:
@@ -13,11 +14,12 @@ spec:
   selector:
     role: mongo
 
-
+---
     apiVersion: apps/v1beta1
     kind: StatefulSet
     metadata:
       name: mongo
+      namespace: dev
     spec:
       serviceName: "mongo"
       replicas: 3
@@ -51,7 +53,7 @@ spec:
       - metadata:
           name: mongo-persistent-storage
           annotations:
-            volume.beta.kubernetes.io/storage-class: "gold"
+            volume.beta.kubernetes.io/storage-class: "standard"
         spec:
           accessModes: [ "ReadWriteOnce" ]
           resources:
