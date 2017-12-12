@@ -39,5 +39,5 @@ spec:
           - name: MONGOHOST
             value: "mongodb://mongo.dev"
           - name: RABBITMQHOST
-            value: "amqp://[url]l:5672"
+            value: "amqp://rabbitmq.dev:5672"
 ---

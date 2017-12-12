@@ -30,15 +30,13 @@ spec:
     spec:
       containers:
       - name: rabbitmqlistenerack
-        image: shanepeckham/rabbitmqlistenerack:
+        image: shanepeckham/rabbitmqlistenerack:v3
         ports:
           - containerPort: 8080
         env:
           - name: TEAMNAME
             value: "team5"
           - name: PROCESSENDPOINT
-            value: "http://fulfillorder.[namespace].svc.cluster.local:8080/v1/order/"
+            value: "http://fulfillorder.dev.svc.cluster.local:8080/v1/order/"
           - name: RABBITMQHOST
-            value: "amqp://[url]l:5672"
-
----
+            value: "amqp://rabbitmq.dev:5672"
