@@ -37,7 +37,7 @@ spec:
           - name: TEAMNAME
             value: "team5"
           - name: MONGOHOST
-            value: "mongodb://[mongoinstance].[namespace]"
+            value: "mongodb://mongo.dev"
           - name: RABBITMQHOST
             value: "amqp://[url]l:5672"
 ---
