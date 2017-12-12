@@ -1,0 +1,44 @@
+#Capture order Rack
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: dev
+  name: captureorderack
+  labels:
+    app: captureorderack
+spec:
+  selector:
+    run: captureorderack
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: dev
+  name: captureorderack
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: captureorderack
+        app: captureorderack
+    spec:
+      containers:
+      - name: captureorderack
+        image: shanepeckham/captureorderack
+        ports:
+          - containerPort: 8080
+        env:
+          - name: TEAMNAME
+            value: "team5"
+          - name: MONGOHOST
+            value: "mongodb://[mongoinstance].[namespace]"
+          - name: RABBITMQHOST
+            value: "amqp://[url]l:5672"
+
+---
